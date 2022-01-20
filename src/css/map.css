@@ -1,0 +1,33 @@
+.hex-row {
+    display: flex;
+    width: fit-content;
+    column-gap: 1.5px;
+}
+
+.odd-row {
+    margin: -28px 51px;
+}
+
+.coordinate {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hexagon:hover {
+    background-color: gainsboro;
+}
+
+.selected {
+    background-color: cornflowerblue !important;
+}
+
+.path {
+    background-color: salmon !important;
+}
+
+.goal {
+    background-color: darkred !important;
+}

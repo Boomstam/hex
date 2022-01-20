@@ -1,0 +1,15 @@
+.menu-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    z-index: 2;
+    background-color: rgba(100, 100, 100, 0.5);
+    display: flex;
+}
+
+.menu-bar-content {
+    padding-left: 20px;
+    color: whitesmoke;
+    font-weight: bold;
+}
