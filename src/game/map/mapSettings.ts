@@ -1,0 +1,1 @@
+export const gridSize = { width: 20, height: 10 };

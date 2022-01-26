@@ -3,7 +3,10 @@ import { toCube, MapNode } from "./pathfindingTypes";
 
 const maxNumIterations = 9999;
 
-export const findPath = (start: Coordinate, goal: Coordinate): Coordinate[] => {
+export const findPath = (
+  start: Coordinate,
+  goal: Coordinate
+): Coordinate[] | undefined => {
   const startCube = toCube(start);
   const goalCube = toCube(goal);
   const startNode = new MapNode(start, 0, Number.MAX_VALUE);
@@ -15,7 +18,11 @@ export const findPath = (start: Coordinate, goal: Coordinate): Coordinate[] => {
     if (openList.length === 0) break;
     let currentFoundNodes: MapNode[] = [];
     openList.sort((a, b) => a.fCost - b.fCost);
+    for (const node of openList) {
+      console.log(node.toString());
+    }
     const node = openList[0];
+    console.log("chosen: " + node.toCoorString());
     const knownNodes = openList.concat(closedList).concat(currentFoundNodes);
     const openNeighbors = node.newNeighborsExcluding(
       knownNodes,
@@ -41,7 +48,7 @@ export const findPath = (start: Coordinate, goal: Coordinate): Coordinate[] => {
       throw new Error("findPath() over max iterations for" + start + goal);
     }
   }
-  throw new Error("Path not found for " + start + goal);
+  console.log("Path not found for " + start + goal);
 };
 
 const retracePath = (goal: MapNode) => {

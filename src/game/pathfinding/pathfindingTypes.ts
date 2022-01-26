@@ -1,4 +1,8 @@
 import { Coordinate } from "../map/mapTypes";
+import { movementCost } from "../terrain/terrainTypes";
+import map from "../map/map";
+
+const hCostMod = 2; // Accounts for average movement costs in the heuristic, can be refined
 
 export class MapNode {
   coor: Coordinate;
@@ -7,6 +11,7 @@ export class MapNode {
   fCost: number;
   gCost: number;
   hCost: number;
+
   constructor(
     coor: Coordinate,
     gCost: number,
@@ -24,11 +29,16 @@ export class MapNode {
   newNeighborsExcluding(nodes: MapNode[], start: Cube, goal: Cube) {
     const neighborCubes = this.cube.neighbors();
     const neighbors: MapNode[] = [];
-    for (const dir of neighborCubes) {
-      if (nodes.some((node) => node.cube.equals(dir))) continue;
-      const gCost = dir.distanceTo(start); // add optional movementcost
-      const hCost = dir.distanceTo(goal); // add optional movementcost
-      const node = new MapNode(toCoor(dir), gCost, hCost, this);
+    for (const cubePos of neighborCubes) {
+      if (nodes.some((node) => node.cube.equals(cubePos))) continue;
+      const coor = toCoor(cubePos);
+      if (map.exists(coor) === false) continue;
+      const movCost = movementCost(coor);
+      if (movCost < 0) continue;
+      const parentGCost = this.parent?.gCost || 0;
+      const gCost = parentGCost + movCost;
+      const hCost = cubePos.distanceTo(goal) * hCostMod + movCost;
+      const node = new MapNode(coor, gCost, hCost, this);
       neighbors.push(node);
     }
     return neighbors;
@@ -37,6 +47,20 @@ export class MapNode {
   equals(other: MapNode) {
     return this.cube.equals(other.cube);
   }
+
+  toString() {
+    const str =
+      this.toCoorString() +
+      ": g=" +
+      this.gCost +
+      ", h=" +
+      this.hCost +
+      ", parent=" +
+      JSON.stringify(this.parent?.coor);
+    return str;
+  }
+
+  toCoorString = () => JSON.stringify(this.coor);
 }
 
 export class Cube {

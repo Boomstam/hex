@@ -13,6 +13,7 @@ export const calculatePathFromSelected = (goal: Coordinate) => {
   if (start === undefined) return;
   deleteCurrentPath();
   const path = findPath(start, goal);
+  if (path === undefined) return;
   const pathWithoutFirstAndLast = path.slice(1, path.length - 1);
   for (const coor of pathWithoutFirstAndLast) {
     const element = findByCoordinate(coor);

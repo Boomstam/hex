@@ -3,9 +3,10 @@
     left: 0;
     top: 0;
     width: 100vw;
-    z-index: 2;
+    z-index: 3;
     background-color: rgba(100, 100, 100, 0.5);
     display: flex;
+    gap: 100px;
 }
 
 .menu-bar-content {

@@ -1,3 +1,8 @@
+.grid {
+    width: fit-content;
+    background-color: rgba(99, 50, 2, 0.8);
+}
+
 .hex-row {
     display: flex;
     width: fit-content;
@@ -30,4 +35,46 @@
 
 .goal {
     background-color: darkred !important;
+}
+
+.terrain-icon {
+    font-size: 70px;
+    z-index: 2;
+    color: antiquewhite;
+    position: absolute;
+    left: 15%;
+    top: -15%;
+    opacity: 0.5;
+}
+
+.water {
+    background-color: royalblue;
+}
+
+.crater {
+    background-color: darkgoldenrod;
+}
+
+.earth {
+    background-color: olive;
+}
+
+.mud {
+    background-color: rgb(99, 50, 2);
+}
+
+.forest {
+    background-color: forestgreen;
+}
+
+.hill {
+    background-color: rgb(170, 126, 82);
+}
+
+.hill-forest {
+    background-color: burlywood;
+}
+
+.mountain {
+    background-color: gray;
 }

@@ -1,36 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/map.css";
 import "./css/hexagon.css";
 import "./css/menu-bar.css";
-import HexagonGrid from "./components/HexagonGrid";
-import MenuBar from "./components/MenuBar";
-//import FullScreen from "react-request-fullscreen";
-//import fs from 'fullscreen';
-
-const gridSize = { width: 20, height: 10 };
+import "./css/game-creator.css";
+import MenuBar from "./components/ui/MenuBar";
+import HexagonGrid from "./components/map/HexagonGrid";
+import GameCreator from "./components/ui/GameCreator";
 
 function App() {
+  const [gameShown, setGameShown] = useState(false);
   return (
     <div id="app">
-      <MenuBar />
-      <HexagonGrid gridSize={gridSize} />
+      <MenuBar gameShown={gameShown} hideGame={() => setGameShown(false)} />
+      {gameShown ? (
+        <HexagonGrid />
+      ) : (
+        <GameCreator showGame={() => setGameShown(true)} />
+      )}
     </div>
   );
 }
 
 export default App;
-/*
-
-https://www.npmjs.com/package/react-request-fullscreen
-
-<FullScreen
-        ref={(ref) => {
-          this.fullScreenRef = ref;
-        }}
-        onFullScreenChange={this.onFullScreenChange.bind(this)}
-      >
-        <div className="rq" onClick={this.requestOrExitFullScreen.bind(this)}>
-          {!isFullScreen ? "Request FullScreen" : "Exit FullScreen"}
-        </div>
-      </FullScreen>
-*/
