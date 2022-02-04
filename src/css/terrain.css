@@ -1,0 +1,41 @@
+.terrain-icon {
+    font-size: 70px;
+    z-index: 2;
+    color: antiquewhite;
+    position: absolute;
+    left: 15%;
+    top: -15%;
+    opacity: 0.5;
+}
+
+.water {
+    background-color: #4169e1;
+}
+
+.crater {
+    background-color: #b8860b;
+}
+
+.earth {
+    background-color: #808000;
+}
+
+.mud {
+    background-color: #633202;
+}
+
+.forest {
+    background-color: #228b22;
+}
+
+.hill {
+    background-color: #aa7e52;
+}
+
+.hill-forest {
+    background-color: #deb887;
+}
+
+.mountain {
+    background-color: #808080;
+}

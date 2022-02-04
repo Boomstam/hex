@@ -33,3 +33,34 @@ export const deleteCurrentPath = () => {
     tile.className = tile.className.replace(" goal", "");
   }
 };
+
+export const scrollToCoor = (target: Coordinate) => {
+  const element = findByCoordinate(target);
+  const position = getPosition(element);
+  const halfScreenWidth = window.innerWidth / 2;
+  const halfScreenHeight = window.innerHeight / 2;
+  window.scrollTo(position.x - halfScreenWidth, position.y - halfScreenHeight);
+};
+
+export const distanceBetweenElements = (a: HTMLElement, b: HTMLElement) => {
+  const aPosition = unnormalisedPositionAtCenter(a);
+  const bPosition = unnormalisedPositionAtCenter(b);
+
+  return Math.hypot(aPosition.x - bPosition.x, aPosition.y - bPosition.y);
+};
+
+function unnormalisedPositionAtCenter(element: HTMLElement) {
+  const { top, left, width, height } = element.getBoundingClientRect();
+  return {
+    x: left + width / 2,
+    y: top + height / 2,
+  };
+}
+
+export function getPosition(element: HTMLElement) {
+  const rect = element.getBoundingClientRect();
+  return {
+    x: rect.left + window.scrollX,
+    y: rect.top + window.scrollY,
+  };
+}

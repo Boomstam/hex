@@ -1,8 +1,13 @@
 import { Coordinate } from "../map/mapTypes";
 import { movementCost } from "../terrain/terrainTypes";
 import map from "../map/map";
+import { findByCoordinate, distanceBetweenElements } from "../map/DOMAccessor";
 
-const hCostMod = 2; // Accounts for average movement costs in the heuristic, can be refined
+/*
+Accounts for average movement costs in the heuristic,
+can be refined (eg calculated accoording to all tiles currently in game).
+*/
+const hCostMod = 3.5;
 
 export class MapNode {
   coor: Coordinate;
@@ -26,7 +31,7 @@ export class MapNode {
     this.fCost = gCost + hCost;
   }
 
-  newNeighborsExcluding(nodes: MapNode[], start: Cube, goal: Cube) {
+  newNeighborsExcluding(nodes: MapNode[], goal: Cube) {
     const neighborCubes = this.cube.neighbors();
     const neighbors: MapNode[] = [];
     for (const cubePos of neighborCubes) {
@@ -37,7 +42,8 @@ export class MapNode {
       if (movCost < 0) continue;
       const parentGCost = this.parent?.gCost || 0;
       const gCost = parentGCost + movCost;
-      const hCost = cubePos.distanceTo(goal) * hCostMod + movCost;
+      //const hCost = cubePos.distanceTo(goal) * hCostMod;
+      const hCost = cubePos.DOMDistanceTo(goal) * hCostMod;
       const node = new MapNode(coor, gCost, hCost, this);
       neighbors.push(node);
     }
@@ -85,6 +91,13 @@ export class Cube {
   distanceTo(other: Cube) {
     const vec = other.substract(this);
     const distance = (Math.abs(vec.q) + Math.abs(vec.r) + Math.abs(vec.s)) / 2;
+    return distance;
+  }
+
+  DOMDistanceTo(other: Cube) {
+    const el = findByCoordinate(toCoor(this));
+    const otherEl = findByCoordinate(toCoor(other));
+    const distance = distanceBetweenElements(el, otherEl);
     return distance;
   }
 

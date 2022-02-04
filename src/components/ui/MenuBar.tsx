@@ -5,6 +5,12 @@ interface MenuBarProps {
 
 const MenuBar: React.FC<MenuBarProps> = ({ gameShown, hideGame }) => {
   const onFullscreen = () => document.documentElement.requestFullscreen();
+  const generateMinimap = () => {
+    /*html2canvas(document.body).then(function (canvas) {
+      document.body.appendChild(canvas);
+    });*/
+
+  };
   return (
     <div className="menu-bar">
       <h4 className="menu-bar-content">Menu</h4>
@@ -12,9 +18,14 @@ const MenuBar: React.FC<MenuBarProps> = ({ gameShown, hideGame }) => {
         Fullscreen
       </button>
       {gameShown && (
-        <button className="menu-bar-button" onClick={hideGame}>
-          Quit game
-        </button>
+        <div>
+          <button className="menu-bar-button" onClick={generateMinimap}>
+            Generate Minimap
+          </button>
+          <button className="menu-bar-button" onClick={hideGame}>
+            Quit game
+          </button>
+        </div>
       )}
     </div>
   );

@@ -6,13 +6,13 @@ interface GameCreatorProps {
 }
 
 const GameCreator: React.FC<GameCreatorProps> = ({ showGame }) => {
-  const [width, setWidth] = useState(20);
-  const [height, setHeight] = useState(10);
+  const [width, setWidth] = useState(60);
+  const [height, setHeight] = useState(40);
   gridSize.width = width;
   gridSize.height = height;
   return (
     <div className="game-creator">
-      <div>
+      <div className="creator-settings">
         <label htmlFor="width">Width</label>
         <input
           type="number"
@@ -35,7 +35,7 @@ const GameCreator: React.FC<GameCreatorProps> = ({ showGame }) => {
   );
 };
 
-const numericOnly = (e: any, action: (val: number) => void) => {
+const numericOnly = (e: any, action: (val: any) => void) => {
   let val = parseInt(e.target.value);
   val = isNaN(val) ? 0 : val;
   action(val);

@@ -6,6 +6,7 @@ class GameMap {
   tiles: Tile[][] = [];
 
   createMap = () => {
+    console.log("create map");
     for (let x = 0; x < gridSize.width; x++) {
       this.tiles[x] = [];
       for (let y = 0; y < gridSize.height; y++) {

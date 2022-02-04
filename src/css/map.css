@@ -1,6 +1,5 @@
 .grid {
     width: fit-content;
-    background-color: rgba(99, 50, 2, 0.8);
 }
 
 .hex-row {
@@ -10,7 +9,7 @@
 }
 
 .odd-row {
-    margin: -28px 51px;
+    margin: -28px 0px -28px 51px;
 }
 
 .coordinate {
@@ -37,44 +36,22 @@
     background-color: darkred !important;
 }
 
-.terrain-icon {
-    font-size: 70px;
-    z-index: 2;
-    color: antiquewhite;
+.minimap-container {
+    border: 5px solid antiquewhite;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    z-index: 3;
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+}
+
+.minimap-view {
+    border: 2px solid rgba(250, 235, 215, 0.69);
+    border-radius: 3px;
     position: absolute;
-    left: 15%;
-    top: -15%;
-    opacity: 0.5;
-}
-
-.water {
-    background-color: royalblue;
-}
-
-.crater {
-    background-color: darkgoldenrod;
-}
-
-.earth {
-    background-color: olive;
-}
-
-.mud {
-    background-color: rgb(99, 50, 2);
-}
-
-.forest {
-    background-color: forestgreen;
-}
-
-.hill {
-    background-color: rgb(170, 126, 82);
-}
-
-.hill-forest {
-    background-color: burlywood;
-}
-
-.mountain {
-    background-color: gray;
+    width: 75px;
+    height: 75px;
+    top: 0;
+    left: 0;
 }

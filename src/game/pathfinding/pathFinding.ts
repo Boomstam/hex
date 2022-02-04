@@ -7,7 +7,6 @@ export const findPath = (
   start: Coordinate,
   goal: Coordinate
 ): Coordinate[] | undefined => {
-  const startCube = toCube(start);
   const goalCube = toCube(goal);
   const startNode = new MapNode(start, 0, Number.MAX_VALUE);
   let openList: MapNode[] = [startNode];
@@ -18,17 +17,9 @@ export const findPath = (
     if (openList.length === 0) break;
     let currentFoundNodes: MapNode[] = [];
     openList.sort((a, b) => a.fCost - b.fCost);
-    for (const node of openList) {
-      console.log(node.toString());
-    }
     const node = openList[0];
-    console.log("chosen: " + node.toCoorString());
     const knownNodes = openList.concat(closedList).concat(currentFoundNodes);
-    const openNeighbors = node.newNeighborsExcluding(
-      knownNodes,
-      startCube,
-      goalCube
-    );
+    const openNeighbors = node.newNeighborsExcluding(knownNodes, goalCube);
     const foundGoal = openNeighbors.filter((neighbor) =>
       neighbor.cube.equals(goalCube)
     );
