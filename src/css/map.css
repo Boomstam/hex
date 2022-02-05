@@ -1,5 +1,6 @@
 .grid {
     width: fit-content;
+    overflow: auto;
 }
 
 .hex-row {
@@ -44,6 +45,9 @@
     position: fixed;
     right: 5px;
     bottom: 5px;
+    width: 200px;
+    height: 100px;
+    overflow: auto;
 }
 
 .minimap-view {

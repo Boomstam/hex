@@ -4,9 +4,7 @@ import { gridSize, minimapPxSize } from "../../game/map/mapSettings";
 import terrain from "../../game/terrain/terrain";
 import HexagonRow from "./HexagonRow";
 
-interface HexagonGridProps {}
-
-const HexagonGrid: React.FC<HexagonGridProps> = () => {
+const HexagonGrid: React.FC = () => {
   const columns = new Array(gridSize.height).fill(0);
   const [terrainCreated, setTerrainCreated] = useState(false);
   useEffect(() => {
